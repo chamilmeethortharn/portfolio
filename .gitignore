@@ -17,16 +17,19 @@ Thumbs.db
 .codex/
 
 # Raw/source design assets that are not needed for deployment
-Assets/
-ideal style/
-Portfolio Requirements.docx
-Portfolio Requirements.pdf
-portfolio_website_codex_blueprint.md
+/Assets/
+/ideal style/
+/Portfolio Requirements.docx
+/Portfolio Requirements.pdf
+/portfolio_website_codex_blueprint.md
 ~$*
 ~WRL*.tmp
 
 # Vercel local project metadata
-.vercel/
+/.vercel/
 
 # Accidental nested clone/repository folder
-portfolio/
+/portfolio/
+
+# GitHub blocks files larger than 100 MB.
+/public/assets/videos/portfolio/LMS_Demo5.mp4

@@ -63,8 +63,7 @@ export const projects: Project[] = [
     videos: [
       "/assets/videos/portfolio/LMS_Demo2.mp4",
       "/assets/videos/portfolio/LMS_Demo3.mp4",
-      "/assets/videos/portfolio/LMS_Demo4.mp4",
-      "/assets/videos/portfolio/LMS_Demo5.mp4"
+      "/assets/videos/portfolio/LMS_Demo4.mp4"
     ],
     sections: [
       {
