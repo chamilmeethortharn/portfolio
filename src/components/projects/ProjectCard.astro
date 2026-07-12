@@ -1,0 +1,55 @@
+---
+import type { Project } from "@/data/projects";
+import BrowserMockup from "@/components/mockups/BrowserMockup.astro";
+import GalleryMockup from "@/components/mockups/GalleryMockup.astro";
+import LaptopMockup from "@/components/mockups/LaptopMockup.astro";
+import MobileMockup from "@/components/mockups/MobileMockup.astro";
+import VideoMockup from "@/components/mockups/VideoMockup.astro";
+
+interface Props {
+  project: Project;
+  compact?: boolean;
+}
+
+const { project, compact = false } = Astro.props;
+const href = `/projects/${project.slug}/`;
+const Mockup =
+  project.mockupType === "laptop"
+    ? LaptopMockup
+    : project.mockupType === "mobile"
+      ? MobileMockup
+      : project.mockupType === "gallery"
+        ? GalleryMockup
+        : project.mockupType === "video"
+          ? VideoMockup
+          : BrowserMockup;
+---
+
+<a
+  class:list={["project-card", compact && "project-card-compact"]}
+  href={href}
+  aria-label={`View case study for ${project.title}`}
+  data-card-video-preview={project.mockupType === "video" ? "true" : undefined}
+>
+  <div class="project-media">
+    <Mockup
+      image={project.thumbnail}
+      images={project.images}
+      video={project.video}
+      previewOnInteraction={project.mockupType === "video"}
+      alt={`${project.title} placeholder preview`}
+    />
+  </div>
+  <div class="project-card-body">
+    <div class="project-kicker">
+      <span>{project.category}</span>
+      {project.year && <span>{project.year}</span>}
+    </div>
+    <h3>{project.title}</h3>
+    <p>{project.shortDescription}</p>
+    <div class="project-tools">
+      {project.tools.slice(0, compact ? 2 : 3).map((tool) => <span>{tool}</span>)}
+    </div>
+    <span class="case-study-link">View Case Study</span>
+  </div>
+</a>

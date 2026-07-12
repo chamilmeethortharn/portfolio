@@ -1,0 +1,8 @@
+.section-pad {
+  padding-block: clamp(4rem, 8vw, 8rem);
+}
+
+*:focus-visible {
+  outline: 3px solid rgba(60, 110, 113, 0.42);
+  outline-offset: 4px;
+}

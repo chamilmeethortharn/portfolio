@@ -1,0 +1,116 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import ProjectDetailHero from "@/components/projects/ProjectDetailHero.astro";
+import ProjectMeta from "@/components/projects/ProjectMeta.astro";
+import ProjectContentSection from "@/components/projects/ProjectContentSection.astro";
+import NextProjectNav from "@/components/projects/NextProjectNav.astro";
+import { getNextProject, projects } from "@/data/projects";
+
+export function getStaticPaths() {
+  return projects.map((project) => ({
+    params: { slug: project.slug },
+    props: { project }
+  }));
+}
+
+const { project } = Astro.props;
+const nextProject = getNextProject(project.slug);
+const summarySection = project.sections.find((section) => /key features|design highlights/i.test(section.heading));
+const remainingSections = project.sections.filter((section) => section !== summarySection);
+const summaryItems = summarySection
+  ? summarySection.body
+      .split(/,\s+and\s+|,\s+|;\s+|\.\s+/)
+      .map((item) => item.trim().replace(/\.$/, ""))
+      .filter(Boolean)
+  : [];
+const audienceItems = project.audience
+  .split(/,\s+and\s+|,\s+|;\s+/)
+  .map((item) => item.trim().replace(/\.$/, ""))
+  .filter(Boolean);
+---
+
+<BaseLayout title={project.title} description={project.shortDescription}>
+  <ProjectDetailHero project={project} />
+  <ProjectMeta project={project} />
+  <section class="section-pad case-study-flow">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-lg-9">
+          <ProjectContentSection heading="Overview" body={project.overview} />
+          {summarySection ? (
+            <article class="case-section case-summary-grid reveal reveal-up">
+              <div class="case-summary-panel">
+                <h2>{project.audienceLabel}</h2>
+                {audienceItems.length > 1 ? (
+                  <ul>
+                    {audienceItems.map((item) => <li>{item}</li>)}
+                  </ul>
+                ) : (
+                  <p>{project.audience}</p>
+                )}
+              </div>
+              <div class="case-summary-panel case-summary-features">
+                <h2>{summarySection.heading}</h2>
+                {summaryItems.length > 1 ? (
+                  <ul>
+                    {summaryItems.map((item) => <li>{item}</li>)}
+                  </ul>
+                ) : (
+                  <p>{summarySection.body}</p>
+                )}
+              </div>
+            </article>
+          ) : (
+            <ProjectContentSection heading={project.audienceLabel} body={project.audience} />
+          )}
+          {remainingSections.map((section) =>
+            section.heading === "Client Rating" && project.ratingImages?.length ? (
+              <article class="case-section case-media case-rating reveal reveal-up" data-project-slug={project.slug}>
+                <h2>{section.heading}</h2>
+                <p>{section.body}</p>
+                <div class="case-media-grid">
+                  {project.ratingImages.map((image, index) => (
+                    <figure>
+                      <img src={image} alt={`${project.title} client rating ${index + 1}`} loading="lazy" />
+                    </figure>
+                  ))}
+                </div>
+              </article>
+            ) : section.heading === "Live Website" ? (
+              <article class="case-section reveal reveal-up">
+                <h2>{section.heading}</h2>
+                <a class="case-live-link" href={section.body} target="_blank" rel="noreferrer">
+                  Visit Website
+                </a>
+              </article>
+            ) : (
+              <ProjectContentSection heading={section.heading} body={section.body} />
+            )
+          )}
+          {(project.images?.length || project.videos?.length) && (
+            <article class="case-section case-media reveal reveal-up" data-project-slug={project.slug}>
+              <h2>Project Media</h2>
+              {project.images?.length && (
+                <div class="case-media-grid">
+                  {project.images.map((image, index) => (
+                    <figure>
+                      <img src={image} alt={`${project.title} visual ${index + 1}`} loading="lazy" />
+                    </figure>
+                  ))}
+                </div>
+              )}
+              {project.videos?.length && (
+                <div class="case-video-grid">
+                  {project.videos.map((video, index) => (
+                    <video src={video} controls preload="metadata" aria-label={`${project.title} demo video ${index + 1}`}></video>
+                  ))}
+                </div>
+              )}
+            </article>
+          )}
+        </div>
+      </div>
+    </div>
+  </section>
+  <NextProjectNav project={nextProject} />
+</BaseLayout>

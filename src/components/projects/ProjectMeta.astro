@@ -1,0 +1,32 @@
+---
+import type { Project } from "@/data/projects";
+
+interface Props {
+  project: Project;
+}
+
+const { project } = Astro.props;
+---
+
+<section class="project-meta-section">
+  <div class="container">
+    <div class="project-meta-grid reveal reveal-up">
+      <div>
+        <span>Year</span>
+        <strong>{project.year ?? "TBC"}</strong>
+      </div>
+      <div>
+        <span>Type</span>
+        <strong>{project.projectType}</strong>
+      </div>
+      <div>
+        <span>Role</span>
+        <strong>{project.role}</strong>
+      </div>
+      <div>
+        <span>Tools</span>
+        <strong>{project.tools.join(", ")}</strong>
+      </div>
+    </div>
+  </div>
+</section>

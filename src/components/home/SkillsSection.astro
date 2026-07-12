@@ -1,0 +1,26 @@
+---
+import SectionHeading from "@/components/common/SectionHeading.astro";
+import { skillGroups } from "@/data/skills";
+---
+
+<section class="section-pad skills-section" id="skills">
+  <div class="container">
+    <SectionHeading
+      eyebrow="Skills & Tools"
+      title="A practical toolkit for building polished multimedia experiences."
+      description="The portfolio combines development, UX methods, visual design, animation tools, and 3D production skills."
+    />
+    <div class="row g-4">
+      {skillGroups.map((group) => (
+        <div class="col-md-6 col-xl-3 reveal reveal-up">
+          <article class="skill-card">
+            <h3>{group.title}</h3>
+            <div class="tag-cloud">
+              {group.skills.map((skill) => <span>{skill}</span>)}
+            </div>
+          </article>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

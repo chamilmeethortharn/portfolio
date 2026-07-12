@@ -1,0 +1,18 @@
+---
+import type { Project } from "@/data/projects";
+
+interface Props {
+  project: Project;
+}
+
+const { project } = Astro.props;
+---
+
+<section class="next-project section-pad">
+  <div class="container">
+    <a href={`/projects/${project.slug}/`} class="next-project-link reveal reveal-up">
+      <span>Next Case Study</span>
+      <strong>{project.title}</strong>
+    </a>
+  </div>
+</section>

@@ -1,0 +1,13 @@
+---
+interface Props {
+  heading: string;
+  body: string;
+}
+
+const { heading, body } = Astro.props;
+---
+
+<article class="case-section reveal reveal-up">
+  <h2>{heading}</h2>
+  <p>{body}</p>
+</article>

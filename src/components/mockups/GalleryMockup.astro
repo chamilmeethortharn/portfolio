@@ -1,0 +1,18 @@
+---
+interface Props {
+  image: string;
+  images?: string[];
+  alt: string;
+}
+
+const { image, images = [], alt } = Astro.props;
+const gallery = images.length ? images : [image];
+---
+
+<figure class="mockup gallery-mockup" aria-label={alt}>
+  {gallery.slice(0, 3).map((src, index) => (
+    <div class="gallery-frame">
+      <img src={src} alt={`${alt} ${index + 1}`} loading="lazy" />
+    </div>
+  ))}
+</figure>

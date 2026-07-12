@@ -1,0 +1,37 @@
+---
+const principles = [
+  {
+    label: "01. USER REQUIREMENTS",
+    body: "Start with the audience, task flow, and content needs before deciding how the interface should look."
+  },
+  {
+    label: "02. STRUCTURE",
+    body: "Shape visuals, motion, interaction, and code so the final experience feels coherent rather than assembled."
+  },
+  {
+    label: "03. Refinement",
+    body: "Feedback driven touch up to ensure the perfect user experience is achieved and the product completes the objectives."
+  }
+];
+---
+
+<section class="section-pad process-section">
+  <div class="container">
+    <div class="row g-5 align-items-center">
+      <div class="col-lg-6 reveal reveal-up">
+        <p class="eyebrow">Approach</p>
+        <h2 class="dark-feature-title">Driven by <span>clarity.</span></h2>
+      </div>
+      <div class="col-lg-6">
+        <div class="process-list reveal-stagger">
+          {principles.map((principle) => (
+            <article class="process-step reveal reveal-up">
+              <span>{principle.label}</span>
+              <p>{principle.body}</p>
+            </article>
+          ))}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

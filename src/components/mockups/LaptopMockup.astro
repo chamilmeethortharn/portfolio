@@ -1,0 +1,18 @@
+---
+interface Props {
+  image: string;
+  alt: string;
+}
+
+const { image, alt } = Astro.props;
+---
+
+<figure class="mockup laptop-mockup">
+  <div class="browser-bar">
+    <span></span><span></span><span></span>
+  </div>
+  <div class="mockup-screen">
+    <img src={image} alt={alt} loading="lazy" />
+  </div>
+  <div class="laptop-base"></div>
+</figure>

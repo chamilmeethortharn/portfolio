@@ -1,0 +1,19 @@
+{
+  "name": "portfolio-website",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "node tools/astro-runner.mjs dev --host 127.0.0.1",
+    "build": "node tools/astro-runner.mjs check && node tools/astro-runner.mjs build",
+    "preview": "node tools/static-server.mjs dist 4321"
+  },
+  "dependencies": {
+    "@astrojs/check": "^0.9.4",
+    "astro": "^5.10.1",
+    "bootstrap": "^5.3.6",
+    "sass": "^1.89.2",
+    "typescript": "^5.8.3"
+  },
+  "devDependencies": {}
+}

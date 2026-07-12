@@ -1,0 +1,25 @@
+---
+import { siteConfig } from "@/data/site";
+---
+
+<section class="hero-section" id="home">
+  <div class="container">
+    <div class="hero-copy reveal reveal-up">
+      <p class="eyebrow">{siteConfig.eyebrow}</p>
+      <h1>{siteConfig.heroHeadline}</h1>
+      <div class="hero-rule" aria-hidden="true"></div>
+      <div class="hero-bottom">
+        <div class="hero-profile-frame">
+          <img src="/assets/images/portfolio/profile-pic.jpg" alt="Portrait of Chamil Meethortharn" />
+        </div>
+        <div class="hero-intro">
+          <p class="hero-lead">{siteConfig.heroDescription}</p>
+          <div class="hero-actions">
+            <a class="btn-primary-soft" href="#works">View Works</a>
+            <a class="text-link" href="#contact">Contact</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

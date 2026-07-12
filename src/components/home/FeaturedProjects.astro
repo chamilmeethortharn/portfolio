@@ -1,0 +1,26 @@
+---
+import SectionHeading from "@/components/common/SectionHeading.astro";
+import ProjectCard from "@/components/projects/ProjectCard.astro";
+import { projects } from "@/data/projects";
+
+const featuredProjects = projects
+  .filter((project) => project.featured)
+  .sort((a, b) => (a.featuredRank ?? 99) - (b.featuredRank ?? 99));
+---
+
+<section class="section-pad featured-section" id="works">
+  <div class="container">
+    <SectionHeading
+      eyebrow="Selected Works"
+      title="Project-led proof across code, interface, and visual communication."
+      description="click to explore a detailed case study."
+    />
+    <div class="row g-4 reveal-stagger">
+      {(featuredProjects.length ? featuredProjects : projects.slice(0, 3)).map((project) => (
+        <div class="col-md-6 col-xl-4 reveal reveal-up">
+          <ProjectCard project={project} />
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

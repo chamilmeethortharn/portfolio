@@ -1,0 +1,32 @@
+# Dependencies
+node_modules/
+
+# Astro build output and generated cache
+dist/
+.astro/
+
+# Local logs and OS files
+*.log
+dev-server.log
+dev-server.err.log
+.DS_Store
+Thumbs.db
+
+# Local Codex/workspace metadata
+.agents/
+.codex/
+
+# Raw/source design assets that are not needed for deployment
+Assets/
+ideal style/
+Portfolio Requirements.docx
+Portfolio Requirements.pdf
+portfolio_website_codex_blueprint.md
+~$*
+~WRL*.tmp
+
+# Vercel local project metadata
+.vercel/
+
+# Accidental nested clone/repository folder
+portfolio/

@@ -1,0 +1,30 @@
+---
+interface Props {
+  image?: string;
+  video?: string;
+  alt: string;
+  previewOnInteraction?: boolean;
+}
+
+const { image, video, alt, previewOnInteraction = false } = Astro.props;
+const poster = !previewOnInteraction && image ? image : undefined;
+---
+
+<figure class:list={["mockup video-mockup", previewOnInteraction && "video-mockup-preview"]} data-video-preview={previewOnInteraction && video ? "true" : undefined}>
+  <div class="mockup-screen">
+    {video ? (
+      <video
+        src={video}
+        data-preview-video={previewOnInteraction ? "true" : undefined}
+        poster={poster}
+        muted
+        loop
+        playsinline
+        preload="metadata"
+        aria-label={alt}
+      ></video>
+    ) : (
+      image && <img src={image} alt={alt} loading="lazy" />
+    )}
+  </div>
+</figure>

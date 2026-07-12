@@ -1,0 +1,34 @@
+---
+import SectionHeading from "@/components/common/SectionHeading.astro";
+import ProjectCard from "@/components/projects/ProjectCard.astro";
+import { projectCategories, projects } from "@/data/projects";
+---
+
+<section class="section-pad gallery-section" aria-labelledby="gallery-heading">
+  <div class="container">
+    <SectionHeading
+      eyebrow="Works Gallery"
+      title="Browse the complete archive by discipline."
+      description="Filter the projects across website development, graphics, interaction, UX/UI, and motion-focused work."
+    />
+    <div class="filter-bar reveal reveal-up" role="tablist" aria-label="Project categories">
+      {projectCategories.map((category, index) => (
+        <button
+          class="filter-button"
+          type="button"
+          data-filter={category}
+          aria-pressed={index === 0 ? "true" : "false"}
+        >
+          {category}
+        </button>
+      ))}
+    </div>
+    <div class="row g-4 project-grid" data-project-grid>
+      {projects.map((project) => (
+        <div class="col-md-6 col-xl-3 project-item reveal reveal-up" data-category={project.category}>
+          <ProjectCard project={project} compact />
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

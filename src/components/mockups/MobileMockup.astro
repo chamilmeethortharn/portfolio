@@ -1,0 +1,15 @@
+---
+interface Props {
+  image: string;
+  alt: string;
+}
+
+const { image, alt } = Astro.props;
+---
+
+<figure class="mockup mobile-mockup">
+  <div class="phone-notch"></div>
+  <div class="mockup-screen">
+    <img src={image} alt={alt} loading="lazy" />
+  </div>
+</figure>
